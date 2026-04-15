@@ -6,6 +6,14 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hello World!</h1>
+    {% for user in users %}
+        <h1>{{ user.ism }} {{ user.familiya }}</h1>
+        <p>{{ user.yosh }} yoshda</p>
+        {% if user.yosh < 15 %}
+            <p>Siz juda yosh ekansiz</p>
+        {% else %}
+            <p>Siz qarib qolibsiz</p>
+        {% endif %}
+    {% endfor %}
 </body>
 </html>

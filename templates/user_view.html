@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ users.ism }} {{ users.familiya }} <br>Yosh: {{ users.yosh }}</h2>   
+    <img src="{{ users.picture.url }}" alt="" width="300px" height="200px">
+    <hr>
+    <a href="{% url 'users_list' %}">Bosh sahifaga qaytish</a>
+{% endblock %}

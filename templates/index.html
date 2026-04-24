@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% include 'navbar.html' %}
+    {% for user in users %}
+        <a href="{% url 'user_view' user.id %}"><h1>{{ user.ism }} {{ user.familiya }}</h1></a>
+    {% endfor %}
+{% endblock %}

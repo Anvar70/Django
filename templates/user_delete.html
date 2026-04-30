@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div style="
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:rgba(0,0,0,0.6);
+    backdrop-filter: blur(6px);
+    padding:20px;
+">
+
+    <div style="
+        width:400px;
+        background:white;
+        padding:30px;
+        border-radius:18px;
+        box-shadow:0 20px 40px rgba(0,0,0,0.3);
+        text-align:center;
+        animation: fadeIn 0.3s ease-in-out;
+    ">
+
+        <!-- Icon -->
+        <div style="font-size:50px;">🗑️</div>
+
+        <h2 style="margin-top:10px; color:#d60000;">
+            Delete User
+        </h2>
+
+        <p style="color:#555; font-size:16px; margin:15px 0;">
+            <b>{{ user.ism }} {{ user.familiya }}</b> ni o‘chirishga ishonchingiz komilmi?
+        </p>
+
+        <p style="color:#999; font-size:13px;">
+            Bu amalni qaytarib bo‘lmaydi
+        </p>
+
+        <!-- Buttons -->
+        <form method="post">
+            {% csrf_token %}
+
+            <button type="submit"
+                style="
+                    width:100%;
+                    padding:12px;
+                    margin-top:15px;
+                    border:none;
+                    border-radius:10px;
+                    background:linear-gradient(135deg,#ff4e50,#d60000);
+                    color:white;
+                    font-size:16px;
+                    cursor:pointer;
+                    transition:0.3s;
+                ">
+                Yes, Delete
+            </button>
+
+        </form>
+
+        <a href="{% url 'user_view' user.slug %}"
+           style="
+                display:block;
+                margin-top:10px;
+                padding:10px;
+                border-radius:10px;
+                background:#eee;
+                color:#333;
+                text-decoration:none;
+                transition:0.3s;
+           ">
+            Cancel
+        </a>
+
+    </div>
+
+</div>
+
+<!-- Animation -->
+<style>
+@keyframes fadeIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+button:hover {
+    transform: scale(1.03);
+    opacity: 0.95;
+}
+
+a:hover {
+    background:#ddd;
+}
+</style>
+
+{% endblock %}

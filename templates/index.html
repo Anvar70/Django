@@ -1,8 +1,52 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {% include 'navbar.html' %}
-    {% for user in users %}
-        <a href="{% url 'user_view' user.id %}"><h1>{{ user.ism }} {{ user.familiya }}</h1></a>
-    {% endfor %}
+
+{% include 'navbar.html' %}
+
+<div style="max-width:800px; margin:20px auto;">
+
+    <!-- Add user button -->
+    <div style="text-align:right; margin-bottom:20px;">
+        <a href="{% url 'user_create' %}" 
+           style="background:green; color:white; padding:10px 15px; 
+                  text-decoration:none; border-radius:6px;">
+            + Foydalanuvchi qo‘shish
+        </a>
+    </div>
+
+    <!-- Users list -->
+    <div style="display:flex; flex-direction:column; gap:10px;">
+
+        {% for user in users %}
+        <a href="{% url 'user_view' user.slug %}" 
+           style="text-decoration:none;">
+
+            <div style="padding:15px; border:1px solid #ddd; border-radius:10px;
+                        transition:0.3s; background:#f9f9f9;">
+
+                <h2 style="margin:0; color:#333;">
+                    {{ user.ism }} {{ user.familiya }}
+                </h2>
+
+            </div>
+
+        </a>
+        {% empty %}
+            <p style="text-align:center; color:gray;">
+                Hozircha foydalanuvchilar yo‘q 😔
+            </p>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<style>
+a div:hover {
+    background:#e9f5ff;
+    transform:scale(1.01);
+}
+</style>
+
 {% endblock %}
